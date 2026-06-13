@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pizza Milan – Villers-le-Lac</title>
+<script>
+(function(){var t=null;try{t=localStorage.getItem("pm-theme");}catch(e){}if(!t){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);window._initTheme=t;})();
+</script>
+<style>
+:root,[data-theme="light"]{--bg:#F8EAD8;--card:#FFF8EE;--text:#1a1a1a;--text2:#555;--muted:#888;--border:#EAE0CE;--gold:#C9933A;--gold-l:#E8B86D;--bar:rgba(8,5,2,0.68);--bar-t:rgba(255,255,255,.90);--modal:#FFFAF2;--allergen:#FFF4E6;--footer:#1a1a1a;--footer-t:rgba(255,255,255,.50);--sh:0 4px 20px rgba(0,0,0,.08);--sh-h:0 14px 40px rgba(0,0,0,.15);--tog:#e2d9cc;--section-bg:#FFF4E8;--section-border:#DDC9A8;}
+[data-theme="dark"]{--bg:#111;--card:#1e1e1e;--text:#f0ece6;--text2:#bbb;--muted:#777;--border:#2e2e2e;--gold:#C9933A;--gold-l:#E8B86D;--bar:rgba(0,0,0,0.70);--bar-t:rgba(255,255,255,.85);--modal:#1e1e1e;--allergen:#1c1c1c;--footer:#0a0a0a;--footer-t:rgba(255,255,255,.40);--sh:0 4px 20px rgba(0,0,0,.4);--sh-h:0 14px 40px rgba(0,0,0,.6);--tog:#2e2e2e;--section-bg:#1a1a1a;--section-border:#333;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .3s,color .3s;}
+
+/* TOGGLE */
+.theme-toggle{position:fixed;top:12px;right:12px;z-index:900;background:var(--tog);border:none;border-radius:999px;padding:8px 15px;display:flex;align-items:center;gap:7px;cursor:pointer;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:600;color:var(--text);box-shadow:0 2px 12px rgba(0,0,0,.22);transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.theme-toggle .icon{font-size:16px;line-height:1;font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;}
+.theme-toggle .lbl{display:none;}
+@media(min-width:600px){.theme-toggle .lbl{display:inline;}}
+
+/* LANG BTN */
+.lang-btn{position:fixed;top:52px;right:12px;z-index:900;background:var(--tog);border:none;border-radius:999px;padding:8px 13px;display:flex;align-items:center;gap:6px;cursor:pointer;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:700;color:var(--text);box-shadow:0 2px 12px rgba(0,0,0,.22);transition:background .3s,color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.lang-code{font-size:11px;font-weight:700;letter-spacing:1px;}
+
+/* HEADER */
+header{position:relative;width:100%;overflow:hidden;height:clamp(280px,44vw,440px);}
+@media(max-width:599px){header{height:auto;min-height:0;max-height:none;padding-bottom:0;}}
+.hgif{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(.40) saturate(.72);}
+.hovl{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,4,0,.28) 0%,rgba(8,4,0,.04) 45%,rgba(8,4,0,.68) 100%);}
+.hcnt{position:absolute;top:0;left:0;right:0;bottom:54px;display:flex;align-items:center;justify-content:center;padding:0 28px;}
+.hinn{display:flex;align-items:center;gap:32px;max-width:860px;width:100%;}
+@media(max-width:599px){.hinn{flex-direction:column;text-align:center;gap:12px;padding:32px 20px 36px;}}
+.logo-ring{flex-shrink:0;width:100px;height:100px;border-radius:50%;border:2.5px solid var(--gold);box-shadow:0 0 28px rgba(201,147,58,.48);overflow:hidden;background:#111;}
+@media(max-width:599px){.logo-ring{width:90px;height:90px;}}
+.logo-ring img{width:100%;height:100%;object-fit:cover;display:block;}
+.htxt{color:#fff;}
+.heyb{font-family:'Helvetica Neue',sans-serif;font-size:clamp(10px,2.5vw,11px);letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);margin-bottom:9px;}
+.htit{font-size:clamp(36px,8vw,66px);font-weight:400;line-height:1;letter-spacing:-1px;}
+.htit em{color:var(--gold-l);font-style:italic;}
+.hsub{font-family:'Helvetica Neue',sans-serif;font-size:clamp(13px,3.5vw,12px);font-weight:300;color:rgba(255,255,255,.70);margin-top:9px;letter-spacing:1px;}
+.hcta{display:inline-block;margin-top:15px;padding:clamp(12px,3vw,11px) clamp(24px,6vw,24px);background:var(--gold);color:#fff;font-family:'Helvetica Neue',sans-serif;font-size:clamp(12px,3vw,11px);font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:999px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;box-shadow:0 4px 16px rgba(201,147,58,.42);}
+
+/* INFO BAR */
+.info-bar{background:rgba(8,5,2,0.40);color:var(--bar-t);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 28px;font-family:'Helvetica Neue',sans-serif;font-size:12px;flex-wrap:wrap;position:absolute;bottom:0;left:0;right:0;z-index:5;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);}
+.info-bar-left{display:flex;flex-direction:column;gap:5px;flex:1;}
+.info-bar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.ib-icon{color:var(--gold);margin-right:5px;}
+.info-bar a{color:var(--gold-l);text-decoration:none;}
+.about-btn{background:none;border:1px solid var(--gold);color:var(--gold-l);padding:7px 16px;border-radius:8px;font-family:'Helvetica Neue',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.about-btn:hover,.about-btn:active{background:var(--gold);color:#fff;}
+/* Mobile info bar */
+@media(max-width:700px){
+  .info-bar{flex-direction:column;gap:0;padding:0;align-items:flex-start;}
+  .info-bar-left{width:100%;gap:0;}
+  .info-bar-right{width:100%;}
+  .hcnt{bottom:110px;}
+}
+
+/* LA CARTE section */
+.carte-header{max-width:1160px;margin:0 auto;padding:48px 28px 0;display:flex;align-items:baseline;gap:32px;flex-wrap:wrap;}
+.carte-title{font-size:clamp(28px,4vw,44px);font-weight:400;letter-spacing:-.5px;color:var(--text);}
+.carte-title em{color:var(--gold);font-style:italic;}
+.carte-nav{display:flex;gap:8px;flex-wrap:wrap;}
+.carte-nav-btn{font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;padding:7px 18px;border-radius:999px;border:2px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
+.carte-nav-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,147,58,.08);}
+
+/* SECTIONS */
+.carte-section{display:none;max-width:1160px;margin:0 auto;padding:0 22px 64px;}
+.carte-section.active{display:block;}
+.section-inner{border:2px solid var(--section-border);border-radius:24px;padding:32px 24px 28px;background:var(--section-bg);margin-top:24px;box-shadow:var(--sh);transition:background .3s,border-color .3s;}
+.section-head{text-align:center;margin-bottom:32px;}
+.section-head h2{font-size:clamp(22px,3.5vw,34px);font-weight:400;color:var(--text);}
+.section-head h2 em{color:var(--gold);font-style:italic;}
+.section-head p{font-family:'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.gold-rule{width:44px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:2px;}
+
+/* PIZZA GRID */
+.pizza-grid{display:grid;gap:20px;grid-template-columns:repeat(3,1fr);}
+@media(max-width:860px){.pizza-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.pizza-grid{grid-template-columns:1fr;gap:14px;}}
+.pizza-card{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:var(--sh);cursor:pointer;position:relative;transition:transform .25s,box-shadow .25s,background .3s;border:1px solid var(--border);-webkit-tap-highlight-color:transparent;touch-action:manipulation;outline:none;}
+@media(min-width:600px){.pizza-card:hover{transform:translateY(-6px);box-shadow:var(--sh-h);}}
+.pizza-card:active{opacity:.85;}
+.pizza-card-img{width:100%;display:block;object-fit:cover;object-position:center 68%;aspect-ratio:1/1;background:#111;}
+@media(max-width:480px){.pizza-card-img{aspect-ratio:4/3;object-position:center center;}}
+.pizza-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.55);color:var(--gold-l);font-family:'Helvetica Neue',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:999px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.pizza-body{padding:13px 15px 16px;}
+.pizza-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;gap:8px;}
+.pizza-name{font-size:16px;font-weight:500;color:var(--text);flex:1;}
+.pizza-price{font-family:'Helvetica Neue',sans-serif;font-size:14px;font-weight:700;color:var(--gold);white-space:nowrap;}
+.pizza-ing{font-family:'Helvetica Neue',sans-serif;font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:4px;}
+.pizza-all{font-family:'Helvetica Neue',sans-serif;font-size:10.5px;color:var(--muted);font-style:italic;opacity:.8;}
+
+/* DRINKS GRID */
+
+
+/* ALLERGENS */
+.allergen-wrap{max-width:1160px;margin:0 auto;padding:0 22px 40px;}
+.allergen-box{border:1px solid var(--border);border-radius:12px;padding:18px 22px;background:var(--allergen);font-family:'Helvetica Neue',sans-serif;font-size:13px;color:var(--muted);line-height:1.9;transition:background .3s,border-color .3s;}
+.allergen-box h4{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+
+/* ORDER BANNER */
+.order-banner{background:linear-gradient(135deg,#0e0e0e 0%,#2c1d08 55%,#0e0e0e 100%);text-align:center;padding:50px 22px;position:relative;overflow:hidden;color:#fff;}
+.order-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(201,147,58,.17) 0%,transparent 68%);}
+.order-banner h3{font-size:clamp(18px,3.5vw,30px);font-weight:400;position:relative;z-index:1;margin-bottom:8px;}
+.order-banner h3 em{color:var(--gold-l);font-style:italic;}
+.order-banner p{font-family:'Helvetica Neue',sans-serif;font-size:13px;color:rgba(255,255,255,.6);position:relative;z-index:1;margin-bottom:20px;}
+.order-phone{position:relative;z-index:1;display:inline-block;padding:13px 32px;background:var(--gold);color:#fff;text-decoration:none;border-radius:999px;font-family:'Helvetica Neue',sans-serif;font-size:clamp(14px,3.5vw,16px);font-weight:700;letter-spacing:2px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+
+/* PIZZA MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(6,3,0,.86);z-index:998;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--modal);border-radius:20px;overflow:hidden;max-width:740px;width:100%;display:flex;max-height:90vh;box-shadow:0 32px 80px rgba(0,0,0,.5);animation:pop .28s ease;transition:background .3s;}
+@keyframes pop{from{opacity:0;transform:scale(.93) translateY(14px);}to{opacity:1;transform:none;}}
+.modal-img{width:46%;flex-shrink:0;object-fit:cover;object-position:center 60%;background:#111;}
+.modal-info{padding:28px 26px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;flex:1;}
+@media(max-width:599px){.modal{flex-direction:column;max-height:92vh;border-radius:16px;}.modal-img{width:100%;height:220px;flex-shrink:0;object-position:center center;}.modal-info{padding:18px 16px 22px;}}
+.modal-num{font-family:'Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.modal-name{font-size:clamp(20px,3.5vw,27px);font-weight:400;letter-spacing:-.5px;margin-bottom:4px;color:var(--text);}
+.modal-price{font-family:'Helvetica Neue',sans-serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.modal-label{font-family:'Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.modal-ing{font-family:'Helvetica Neue',sans-serif;font-size:13.5px;line-height:1.7;margin-bottom:12px;color:var(--text2);}
+.modal-all{font-family:'Helvetica Neue',sans-serif;font-size:12px;color:var(--muted);font-style:italic;background:var(--allergen);border-left:3px solid var(--gold);padding:9px 12px;border-radius:7px;margin-bottom:18px;border:1px solid var(--border);}
+.modal-btn{display:block;text-align:center;padding:12px 22px;background:var(--text);color:var(--bg);font-family:'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:999px;-webkit-tap-highlight-color:transparent;}
+.modal-btn:active,.modal-btn:hover{background:var(--gold);color:#fff;}
+.modal-close{position:fixed;top:12px;right:62px;width:40px;height:40px;background:rgba(255,255,255,.16);border:none;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:1001;-webkit-tap-highlight-color:transparent;}
+@media(max-width:599px){.modal-close{right:12px;}}
+
+/* ABOUT MODAL */
+.about-overlay{display:none;position:fixed;inset:0;background:rgba(6,3,0,.88);z-index:997;align-items:flex-start;justify-content:center;padding:24px 16px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);overflow-y:auto;overflow-x:hidden;}
+.about-overlay.open{display:block;}
+.about-modal{background:var(--modal);border-radius:24px;max-width:900px;width:100%;max-height:none;overflow:visible;box-shadow:0 40px 100px rgba(0,0,0,.6);animation:pop .3s ease;transition:background .3s;margin:0 auto;}
+.about-header{background:linear-gradient(135deg,#111 0%,#2c1d08 60%,#111 100%);padding:36px 40px 28px;position:relative;}
+@media(max-width:599px){.about-header{padding:24px 20px 20px;}}
+.about-header-inner{display:flex;align-items:center;gap:22px;}
+.about-logo{width:70px;height:70px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;flex-shrink:0;}
+.about-title-block{}
+.about-eyebrow{font-family:'Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-l);margin-bottom:6px;}
+.about-title{font-size:clamp(22px,4vw,32px);font-weight:400;color:#fff;letter-spacing:-.5px;}
+.about-title em{color:var(--gold-l);font-style:italic;}
+.about-body{padding:36px 40px 40px;}
+@media(max-width:599px){.about-body{padding:22px 18px 28px;}}
+.about-text{font-family:'Georgia',serif;font-size:15px;line-height:1.85;color:var(--text2);margin-bottom:28px;}
+.about-text p{margin-bottom:16px;}
+.about-text .quote{font-style:italic;color:var(--gold);font-size:16px;border-left:3px solid var(--gold);padding-left:16px;margin:24px 0;line-height:1.6;}
+.diplomas-title{font-family:'Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.diplomas-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:599px){.diplomas-grid{grid-template-columns:1fr;gap:12px;}}
+.diploma-card{border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--sh);transition:transform .2s,box-shadow .2s;}
+.diploma-card:hover{transform:translateY(-3px);box-shadow:var(--sh-h);}
+.diploma-card img{width:100%;display:block;object-fit:cover;}
+.diploma-label{padding:10px 14px;background:var(--card);font-family:'Helvetica Neue',sans-serif;font-size:11px;color:var(--muted);}
+.diploma-label strong{display:block;font-size:12px;color:var(--text);margin-bottom:2px;}
+.about-close-btn{display:block;margin:0 auto;padding:12px 32px;background:var(--gold);color:#fff;border:none;border-radius:999px;font-family:'Helvetica Neue',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:28px;transition:background .2s;}
+.about-close-btn:hover{background:var(--gold-l);}
+
+/* NAV PICKER */
+.nav-trigger{cursor:pointer;color:var(--gold-l);text-decoration:none;border-bottom:1px dashed var(--gold-l);transition:color .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;white-space:nowrap;}
+.nav-picker-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1100;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding-bottom:env(safe-area-inset-bottom,0px);}
+.nav-picker-overlay.open{display:flex;}
+.nav-picker{background:var(--bg);border-radius:20px 20px 0 0;padding:20px 20px 28px;width:100%;max-width:480px;box-shadow:0 -8px 40px rgba(0,0,0,.3);animation:slideUp .25s ease;transition:background .3s;}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:none;}}
+.nav-picker-title{font-family:'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:16px;}
+.nav-picker-addr{font-family:'Helvetica Neue',sans-serif;font-size:13px;color:var(--text2);text-align:center;margin-bottom:20px;line-height:1.5;}
+.nav-apps{display:flex;flex-direction:column;gap:10px;}
+.nav-app-btn{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;text-decoration:none;border:1px solid var(--border);background:var(--card);transition:background .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+.nav-app-btn:active{background:var(--border);}
+.nav-app-icon{font-size:24px;flex-shrink:0;font-family:'Segoe UI Emoji','Apple Color Emoji','Noto Color Emoji',sans-serif;}
+.nav-app-name{font-family:'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;color:var(--text);display:block;}
+.nav-app-desc{font-family:'Helvetica Neue',sans-serif;font-size:11px;color:var(--muted);display:block;margin-top:2px;}
+.nav-cancel{margin-top:12px;width:100%;padding:13px;background:none;border:1px solid var(--border);border-radius:14px;font-family:'Helvetica Neue',sans-serif;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent;}
+.nav-cancel:active{background:var(--border);}
+
+/* LANG PICKER */
+.lang-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1100;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding-bottom:env(safe-area-inset-bottom,0px);}
+.lang-overlay.open{display:flex;}
+.lang-picker{background:var(--bg);border-radius:20px 20px 0 0;padding:20px 20px 28px;width:100%;max-width:480px;box-shadow:0 -8px 40px rgba(0,0,0,.3);animation:slideUp .25s ease;transition:background .3s;}
+.lang-picker-title{font-family:'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:16px;}
+.lang-options{display:flex;flex-direction:column;gap:8px;}
+.lang-option{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;border:1px solid var(--border);background:var(--card);cursor:pointer;transition:background .2s,border-color .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;width:100%;text-align:left;}
+.lang-option:active{background:var(--border);}
+.lang-option.active{border-color:var(--gold);background:var(--allergen);}
+.lang-flag{display:flex;align-items:center;flex-shrink:0;}
+.lang-name{font-family:'Helvetica Neue',sans-serif;font-size:15px;font-weight:600;color:var(--text);}
+.lang-cancel{margin-top:10px;width:100%;padding:13px;background:none;border:1px solid var(--border);border-radius:14px;font-family:'Helvetica Neue',sans-serif;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent;}
+.lang-cancel:active{background:var(--border);}
+
+/* FOOTER */
+footer{background:var(--footer);color:var(--footer-t);padding:24px 32px;font-family:'Helvetica Neue',sans-serif;font-size:12px;line-height:1.9;transition:background .3s;}
+footer strong{color:rgba(255,255,255,.85);}
+footer a{color:var(--gold);text-decoration:none;}
+.footer-inner{display:flex;align-items:center;gap:28px;max-width:1100px;margin:0 auto;}
+.footer-logo-wrap{flex-shrink:0;}
+.footer-logo{width:110px;height:110px;border-radius:50%;object-fit:cover;display:block;border:2px solid rgba(201,147,58,0.4);}
+.footer-text{flex:1;text-align:left;}
+.footer-divider{width:100%;height:1px;background:rgba(255,255,255,0.08);margin:10px 0;}
+.footer-copy{text-align:center;color:rgba(255,255,255,.35);font-size:11px;padding-top:14px;max-width:1100px;margin:0 auto;}
+@media(max-width:600px){
+  footer{padding:20px 16px 16px;}
+  .footer-inner{flex-direction:column;align-items:center;gap:16px;text-align:center;}
+  .footer-text{text-align:center;}
+  .footer-logo{width:88px;height:88px;}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;}}
+
+/* INFO BAR address prominent */
+.ib-address {
+  display:flex; align-items:center; gap:8px;
+  padding:12px 28px 6px;
+}
+.ib-address-link {
+  font-size:15px !important;
+  font-weight:700;
+  letter-spacing:0.3px;
+  color:var(--gold-l) !important;
+  border-bottom:1px dashed rgba(232,182,109,0.6);
+  font-family:'Helvetica Neue',sans-serif;
+}
+.ib-details {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:4px;
+  font-size:11.5px;
+  color:rgba(255,255,255,0.72);
+  padding:0 28px 12px;
+}
+.ib-sep { color:rgba(255,255,255,0.25); }
+
+/* Desktop: about button inline */
+.info-bar-right { padding:0 0 0 16px; }
+
+/* Mobile overrides */
+@media(max-width:700px) {
+  .ib-address {
+    padding:14px 16px 8px;
+    gap:6px;
+  }
+  .ib-address-link { font-size:15px !important; font-weight:800; }
+  .ib-details {
+    padding:0 16px 10px;
+    font-size:12px;
+    gap:3px;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .ib-sep { display:inline; }
+  /* About button: full width block below details */
+  .info-bar-right {
+    padding:10px 16px 14px;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .about-btn {
+    width:100%;
+    text-align:center;
+    padding:11px 16px;
+    font-size:12px;
+    border-radius:10px;
+  }
+}
+
+/* Keep icon + text on same line always */
+.ib-item {
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+  white-space:nowrap;
+}
+
+@media(max-width:599px){
+  .hcnt{
+    position:relative;
+    top:auto;left:auto;right:auto;bottom:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 20px 28px;
+    min-height:260px;
+  }
+  .info-bar{
+    position:relative !important;
+    bottom:auto !important;
+    left:auto !important;
+    right:auto !important;
+    margin-top:0 !important;
+  }
+  header{
+    display:flex;
+    flex-direction:column;
+  }
+  .hgif{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+  .hovl{
+    position:absolute;
+    inset:0;
+  }
+}
+
+/* Milan photo background in about modal */
+.about-modal {
+  position: relative;
+  overflow: hidden;
+}
+.about-modal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('images/milan_photo.jpg');
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-modal > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── DRINKS SECTION ── */
+.section-drinks-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  margin-top: 24px;
+  box-shadow: var(--sh);
+  border: 2px solid var(--section-border);
+}
+/* BG photo desktop (portrait) */
+.section-drinks-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('images/milan_photo.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.45;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 22px;
+}
+/* BG overlay for readability */
+.section-drinks-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--section-bg);
+  opacity: 0.78;
+  z-index: 1;
+  border-radius: 22px;
+  pointer-events: none;
+}
+.section-drinks-content {
+  position: relative;
+  z-index: 2;
+  padding: 32px 24px 28px;
+}
+@media(max-width:599px) {
+  .section-drinks-bg {
+    background-image: url('images/drink_bg2.png');
+    background-position: center center;
+  }
+}
+
+/* Drinks grid: 4 cols desktop, 2 mobile */
+.drinks-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+}
+@media(max-width:860px) { .drinks-grid { grid-template-columns: repeat(3,1fr); } }
+@media(max-width:560px) { .drinks-grid { grid-template-columns: repeat(2,1fr); gap:12px; } }
+
+.drink-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.10);
+  border: 1px solid rgba(201,147,58,0.22);
+  transition: transform .2s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 12px 16px;
+  text-align: center;
+  cursor: default;
+}
+[data-theme="dark"] .drink-card {
+  background: #f8f4ee;
+  border-color: rgba(201,147,58,0.3);
+}
+@media(min-width:600px) {
+  .drink-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+  }
+}
+.drink-card:active { transform: scale(.97); }
+
+.drink-img-wrap {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.drink-img {
+  max-height: 110px;
+  max-width: 100px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));
+}
+/* Bottles taller */
+.drink-img.bottle {
+  max-height: 130px;
+  max-width: 55px;
+}
+/* Wine/rosé bottles same */
+.drink-img.bottle-dark {
+  max-height: 130px;
+  max-width: 55px;
+}
+.drink-name {
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.drink-desc {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.drink-price {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold);
+}
+</style>
+</head>
+<body>
+
+<!-- Hidden pizza images -->
+<div style="display:none" aria-hidden="true">
+<img id="pimg0"     src="images/margarita_web.jpg" alt="" loading="eager">
+<img id="pimg0_mob" src="images/margarita_mob.jpg" alt="" loading="eager">
+<img id="pimg1"     src="images/reine_web.jpg" alt="" loading="eager">
+<img id="pimg1_mob" src="images/reine_mob.jpg" alt="" loading="eager">
+<img id="pimg2"     src="images/paysanne_web.jpg" alt="" loading="eager">
+<img id="pimg2_mob" src="images/paysanne_mob.jpg" alt="" loading="eager">
+<img id="pimg3"     src="images/4fromages_web.jpg" alt="" loading="eager">
+<img id="pimg3_mob" src="images/4fromages_mob.jpg" alt="" loading="eager">
+<img id="pimg4"     src="images/vegetarienne_web.jpg" alt="" loading="eager">
+<img id="pimg4_mob" src="images/vegetarienne_mob.jpg" alt="" loading="eager">
+<img id="pimg5"     src="images/parma_web.jpg" alt="" loading="eager">
+<img id="pimg5_mob" src="images/parma_mob.jpg" alt="" loading="eager">
+<img id="pimg6"     src="images/norvegienne_web.jpg" alt="" loading="eager">
+<img id="pimg6_mob" src="images/norvegienne_mob.jpg" alt="" loading="eager">
+<img id="pimg7"     src="images/mortadella_web.png" alt="" loading="eager">
+<img id="pimg7_mob" src="images/mortadella_mob.png" alt="" loading="eager">
+<img id="pimg8"     src="images/chorizo_web.jpg" alt="" loading="eager">
+<img id="pimg8_mob" src="images/chorizo_mob.jpg" alt="" loading="eager">
+</div>
+
+<button class="theme-toggle" id="themeBtn" onclick="toggleTheme()" aria-label="Changer de thème"><span class="icon" id="themeIcon">🌙</span><span class="lbl" id="themeLabel">Mode sombre</span></button>
+
+<button class="lang-btn" id="langBtn" onclick="openLangPicker()" aria-label="Changer de langue"><span id="langBtnFlag" style="display:flex;align-items:center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg></span><span class="lang-code">FR</span></button>
+
+<button class="modal-close" id="closeBtn" onclick="closeModal()" style="display:none" aria-label="Fermer">✕</button>
+
+<header>
+<img src="images/four_bois.gif" alt="Four à bois Pizza Milan" class="hgif">
+<div class="hovl"></div>
+<div class="hcnt"><div class="hinn">
+<div class="logo-ring"><img src="images/logo.png" alt="Logo Pizza Milan"></div>
+<div class="htxt">
+<p class="heyb" id="txt-eyebrow">Pizza au feu de bois · Artisanale</p>
+<h1 class="htit">Pizza <em>Milan</em></h1>
+<p class="hsub" id="txt-subtitle">À emporter · Villers-le-Lac · Fait avec passion</p>
+<a href="tel:0759688819" class="hcta" id="txt-cta">Commander — 07 59 68 88 19</a>
+</div></div></div>
+
+
+<div class="info-bar">
+  <div class="info-bar-left">
+    <div class="ib-address"><span class="ib-icon">📍</span><a class="nav-trigger ib-address-link" onclick="openNav()" href="javascript:void(0)">8 Rue de Bellevue, 25130 Villers-le-Lac</a></div>
+    <div class="ib-details"><span class="ib-item"><span class="ib-icon">🕕</span><span id="txt-ib-hours">Commandes préférables de 18h à 20h · Retrait jusqu’à 22h · Tous les jours</span></span><span class="ib-sep">&nbsp;·&nbsp;</span><span class="ib-item"><span class="ib-icon">📧</span><a href="mailto:pizza.milan@Outlook.fr">pizza.milan@Outlook.fr</a></span><span class="ib-sep">&nbsp;·&nbsp;</span><span class="ib-item"><span class="ib-icon">📞</span><a href="tel:0759688819">07 59 68 88 19</a></span></div>
+  </div>
+  <div class="info-bar-right">
+    <button class="about-btn" onclick="openAbout()" id="txt-about-btn">À propos de <strong>PIZZA MILAN</strong></button>
+  </div>
+</div>
+</header>
+
+
+<div class="carte-header">
+  <h2 class="carte-title">La <em>Carte</em></h2>
+  <div class="carte-nav">
+    <button class="carte-nav-btn active" id="nav-pizzas" onclick="showSection('pizzas')">🍕 Nos Pizzas</button>
+    <button class="carte-nav-btn" id="nav-boissons" onclick="showSection('boissons')">🍷 Nos Boissons</button>
+  </div>
+</div>
+
+<div class="carte-section active" id="section-pizzas">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2 id="txt-sec-title">Nos <em>Pizzas</em></h2>
+      <p id="txt-sec-sub">9 PIZZAS AU FEU DE BOIS</p>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="pizza-grid" id="grid"></div>
+  </div>
+</div>
+
+<div class="carte-section" id="section-boissons">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2>Nos <em>Boissons</em></h2>
+      <p>À EMPORTER</p>
+      <div class="gold-rule"></div>
+    </div>
+    <div class="drinks-grid" id="drinks-grid"></div>
+  </div>
+</div>
+
+<div class="allergen-wrap">
+  <div class="allergen-box">
+    <h4 id="txt-allergen-title">Informations allergènes</h4>
+    <span id="txt-allergen-text"><strong>Gluten</strong> : pâte à pizza (toutes les pizzas) &nbsp;·&nbsp; <strong>Lait</strong> : mozzarella, parmesan, burrata, crème, gorgonzola, chèvre, scamorza &nbsp;·&nbsp; <strong>Poisson</strong> : saumon fumé (Norvégienne) &nbsp;·&nbsp; <strong>Fruits à coque</strong> : pistaches (Mortadella, Pesto)</span>
+  </div>
+</div>
+
+
+
+<div class="modal-overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="modal">
+    <img class="modal-img" id="mImg" src="" alt="">
+    <div class="modal-info">
+      <p class="modal-num" id="mNum"></p>
+      <h2 class="modal-name" id="mName"></h2>
+      <p class="modal-price" id="mPrice"></p>
+      <p class="modal-label" id="txt-modal-label">Ingrédients</p>
+      <p class="modal-ing" id="mIng"></p>
+      <p class="modal-all" id="mAll"></p>
+      <a href="tel:0759688819" class="modal-btn" id="txt-modal-btn">Commander — 07 59 68 88 19</a>
+    </div>
+  </div>
+</div>
+
+<div class="about-overlay" id="aboutOverlay">
+  <div class="about-modal">
+    <div class="about-header">
+      <div class="about-header-inner">
+        <img src="images/logo.png" alt="Logo" class="about-logo">
+        <div class="about-title-block">
+          <p class="about-eyebrow" id="about-eyebrow">Pizzaiolo certifié · Villers-le-Lac</p>
+          <h2 class="about-title" id="about-title">À propos de <em>Pizza Milan</em></h2>
+        </div>
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="about-text" id="about-paragraphs">
+        <p id="about-p0">Depuis toujours, la gastronomie et l’amour des bonnes choses occupent une place importante dans ma vie. Passioné par l’univers de la pizza, j’ai naturellement voulu réunir ces deux valeurs : la convivialité et la recherche de la qualité.</p>
+        <p id="about-p1">Pendant de nombreuses années, j’ai préparé des pizzas pour ma famille, mes amis et mes proches. Pour moi, la pizza est bien plus qu’un simple repas : c’est un moment de partage, de chaleur et de bonne humeur, capable de rassembler les gens autour d’une même table.</p>
+        <p id="about-p2">Encouragé par ceux qui appréciaient mes créations, j'ai décidé de transformer cette passion en véritable métier. Mais il était essentiel pour moi de proposer bien plus qu'une simple pizza : je voulais offrir un produit artisanal, préparé avec exigence, à partir d'ingrédients frais et soigneusement sélectionnés.</p>
+        <p id="about-p3">C'est dans cette démarche que j'ai choisi de me former auprès de l'<strong>École Italienne de Pizzaiolo de France</strong>, où j'ai obtenu mon diplôme avec succès, ainsi que mon <strong>Certificat de Qualification Professionnelle</strong>.</p>
+        <p id="about-p4">Aujourd'hui, fort de cette expérience, de cette formation et surtout d'une passion intacte, je mets tout mon cœur dans chacune de mes pizzas afin de vous faire découvrir un véritable goût d'Italie : authentique, généreux et gourmand.</p>
+        <p id="about-p5"><strong>Bienvenue chez Pizza Milan.</strong></p>
+        <p class="quote" id="about-quote">« Chaque pizza est préparée comme si elle était destinée à ma propre famille. »</p>
+      </div>
+      <p class="diplomas-title" id="about-diplomas-title">Diplômes &amp; Certifications</p>
+      <div class="diplomas-grid">
+        <div class="diploma-card">
+          <img src="images/diplome1.png" alt="Attestation École Italienne de Pizzaiolo">
+          <div class="diploma-label"><strong id="diplome1-label">Formation CQP Pizzaiolo</strong><span id="diplome1-sub"> · École Italienne de Pizzaiolo Paris · Déc. 2025</span></div>
+        </div>
+        <div class="diploma-card">
+          <img src="images/diplome2.png" alt="CQP Pizzaiolo Niveau 3">
+          <div class="diploma-label"><strong id="diplome2-label">CQP Pizzaiolo – Niveau 3</strong><span id="diplome2-sub"> · CPNE HCR · Certifié Janvier 2026</span></div>
+        </div>
+      </div>
+      <button class="about-close-btn" id="about-close-btn" onclick="closeAbout()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<div class="nav-picker-overlay" id="navOverlay" onclick="navOverlayClick(event)">
+  <div class="nav-picker">
+    <p class="nav-picker-title" id="txt-nav-title">Ouvrir avec</p>
+    <p class="nav-picker-addr" id="txt-nav-addr"><strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac</p>
+    <div class="nav-apps">
+      <a class="nav-app-btn" href="https://www.google.com/maps?q=47.0612302,6.666768&ll=47.0612302,6.666768&z=17" target="_blank" rel="noopener" onclick="closeNav()">
+        <span class="nav-app-icon">🗺️</span><span class="nav-app-info"><span class="nav-app-name">Google Maps</span><span class="nav-app-desc">It inéraire &amp; navigation</span></span></a>
+      <a class="nav-app-btn" href="waze://ul?ll=47.0612302,6.666768&navigate=yes&zoom=17" target="_blank" rel="noopener" onclick="closeNav()">
+        <span class="nav-app-icon">🔵</span><span class="nav-app-info"><span class="nav-app-name">Waze</span><span class="nav-app-desc">Navigation temps réel</span></span></a>
+      <a class="nav-app-btn" href="https://ul.waze.com/ul?ll=47.0612302%2C6.666768&navigate=yes&zoom=17" target="_blank" rel="noopener" onclick="closeNav()">
+        <span class="nav-app-icon">🔵</span><span class="nav-app-info"><span class="nav-app-name">Waze (web)</span><span class="nav-app-desc">Si l'app ne s'ouvre pas</span></span></a>
+      <a class="nav-app-btn" href="maps://maps.apple.com/?ll=47.0612302,6.666768&q=Pizza+Milan" target="_blank" rel="noopener" onclick="closeNav()">
+        <span class="nav-app-icon">🍎</span><span class="nav-app-info"><span class="nav-app-name">Apple Maps</span><span class="nav-app-desc">Plans (iPhone / Mac)</span></span></a>
+    </div>
+    <button class="nav-cancel" id="txt-nav-cancel" onclick="closeNav()">Annuler</button>
+  </div>
+</div>
+
+<div class="lang-overlay" id="langOverlay" onclick="langOverlayClick(event)">
+  <div class="lang-picker">
+    <p class="lang-picker-title">Choisir la langue / Choose language</p>
+    <div class="lang-options">
+<button class="lang-option active" onclick="setLang('fr')"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ED2939"/></svg></span><span class="lang-name">Français</span></button>
+<button class="lang-option" onclick="setLang('it')"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#CE2B37"/></svg></span><span class="lang-name">Italiano</span></button>
+<button class="lang-option" onclick="setLang('pt')"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="30" height="20" fill="#006600"/><rect width="12" height="20" fill="#FF0000"/><ellipse cx="12" cy="10" rx="4" ry="4" fill="#FFD700" stroke="#003399" stroke-width="0.8"/></svg></span><span class="lang-name">Português</span></button>
+<button class="lang-option" onclick="setLang('tr')"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="30" height="20" fill="#E30A17"/><circle cx="13" cy="10" r="5" fill="#fff"/><circle cx="15" cy="10" r="4" fill="#E30A17"/><polygon points="19,10 22,8.5 21,10 22,11.5" fill="#fff"/></svg></span><span class="lang-name">Türkçe</span></button>
+<button class="lang-option" onclick="setLang('sr')"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="30" height="7" fill="#C6363C"/><rect y="7" width="30" height="6" fill="#0C4076"/><rect y="13" width="30" height="7" fill="#fff"/></svg></span><span class="lang-name">Srpski</span></button>
+<button class="lang-option" onclick="setLang('sq')"><span class="lang-flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="30" height="20" fill="#E41E20"/><path d="M10,4 C9,4 7,5 7,7 C7,9 9,10 9,10 C9,10 8,11 8,13 C8,15 9.5,16.5 10,16.5 C10.5,16.5 12,15 12,13 C12,11 11,10 11,10 C11,10 13,9 13,7 C13,5 11,4 10,4Z M5,7 C5,5.5 6,4.5 7.5,5.5 L7.5,8 C6,9 5,9 5,7Z M15,7 C15,5.5 14,4.5 12.5,5.5 L12.5,8 C14,9 15,9 15,7Z M18,4 C17,4 15,5 15,7 C15,9 17,10 17,10 C17,10 16,11 16,13 C16,15 17.5,16.5 18,16.5 C18.5,16.5 20,15 20,13 C20,11 19,10 19,10 C19,10 21,9 21,7 C21,5 19,4 18,4Z M13,7 C13,5.5 14,4.5 15.5,5.5 L15.5,8 C14,9 13,9 13,7Z M23,7 C23,5.5 22,4.5 20.5,5.5 L20.5,8 C22,9 23,9 23,7Z" fill="#000"/></svg></span><span class="lang-name">Shqip</span></button>
+    </div>
+    <button class="lang-cancel" id="txt-lang-cancel" onclick="closeLangPicker()">Annuler</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo-wrap">
+      <img src="images/logo.png" alt="Logo Pizza Milan" class="footer-logo">
+    </div>
+    <div class="footer-text">
+      <strong>PIZZA MILAN</strong><br>
+      SARL unipersonnelle · Capital 1 500 € · RCS Besançon 104 478 144<br>
+      <a onclick="openNav()" href="javascript:void(0)" style="color:var(--gold)">8 Rue de Bellevue · 25130 Villers-le-Lac</a> · EUID FR2501.104478144<br>
+      <span id="txt-footer-activity">Activité : fabrication et vente de pizzas à emporter</span><br>
+      <div class="footer-divider"></div>
+      <a href="tel:0759688819">07 59 68 88 19</a> · <a href="mailto:pizza.milan@Outlook.fr">pizza.milan@Outlook.fr</a> · <span id="txt-footer-hours">Ouvert tous les jours · Commandes 18h–20h</span>
+    </div>
+  </div>
+  <p class="footer-copy"><span id="txt-footer-rights">© 2026 Pizza Milan – Tous droits réservés</span></p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  /* ── Section switching ── */
+  window.showSection = function(name) {
+    document.querySelectorAll('.carte-section').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('.carte-nav-btn').forEach(function(b){ b.classList.remove('active'); });
+    var sec = document.getElementById('section-' + name);
+    var btn = document.getElementById('nav-' + name);
+    if(sec) sec.classList.add('active');
+    if(btn) btn.classList.add('active');
+  };
+
+  /* ── Build drinks ── */
+  var DRINKS = [
+{"id":"d1","name":"Coca-Cola","desc":"Canette 33 cl","price":"2 €","src":"images/coca_normal.png"},
+{"id":"d2","name":"Coca-Cola Zéro","desc":"Canette 33 cl","price":"2 €","src":"images/coca_zero.png"},
+{"id":"d3","name":"Ice Tea Pêche","desc":"Canette 33 cl · Lipton","price":"2 €","src":"images/ice_tea.png"},
+{"id":"d4","name":"Orangina","desc":"Canette 33 cl","price":"2 €","src":"images/orangina.png"},
+{"id":"d5","name":"Bière Bud","desc":"Bouteille 33 cl","price":"2,50 €","src":"images/biere_bud.png"},
+{"id":"d6","name":"Vin Rouge","desc":"Bouteille 75 cl · P’tit Buisse","price":"6 €","src":"images/vin_rouge.png"},
+{"id":"d7","name":"Rosé","desc":"Bouteille 75 cl · Billette Provençal","price":"7 €","src":"images/rose.png"}
+];
+  var dg = document.getElementById('drinks-grid');
+  if(dg) DRINKS.forEach(function(d) {
+    var card = document.createElement('div');
+    card.className = 'drink-card';
+    // Bottles get taller class
+    var isBottle = d.id === 'd5';
+    var isDarkBottle = d.id === 'd6' || d.id === 'd7';
+    var imgClass = isBottle ? 'drink-img bottle' : isDarkBottle ? 'drink-img bottle-dark' : 'drink-img';
+    card.innerHTML =
+      '<div class="drink-img-wrap"><img class="' + imgClass + '" src="' + d.src + '" alt="' + d.name + '" loading="lazy"></div>'
+      + '<div class="drink-name">' + d.name + '</div>'
+      + '<div class="drink-desc">' + d.desc + '</div>'
+      + '<div class="drink-price">' + d.price + '</div>';
+    dg.appendChild(card);
+  });
+
+  /* ── About modal ── */
+  window.openAbout = function() {
+    document.getElementById('aboutOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeAbout = function() {
+    document.getElementById('aboutOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  document.getElementById('aboutOverlay').addEventListener('click', function(e){
+    if(e.target === this) window.closeAbout();
+  });
+
+
+  /* Theme UI */
+  function applyThemeUI(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    var icon = document.getElementById('themeIcon');
+    var lbl  = document.getElementById('themeLabel');
+    if (icon) icon.textContent = t === 'dark' ? '\u2600\ufe0f' : '\uD83C\uDF19';
+    if (lbl)  lbl.textContent  = t === 'dark' ? 'Mode clair' : 'Mode sombre';
+    try { localStorage.setItem('pm-theme', t); } catch(e) {}
+  }
+  applyThemeUI(window._initTheme || 'light');
+  window.toggleTheme = function() {
+    var cur = document.documentElement.getAttribute('data-theme');
+    applyThemeUI(cur === 'dark' ? 'light' : 'dark');
+  };
+
+  /* Pizza data */
+  var PIZZAS = [{"id": 1, "name": "Margherita", "price": "12 \u20ac", "ing": "Base sauce tomate, mozzarella fior di latte, parmesan, basilic.", "all": "Gluten, lait."}, {"id": 2, "name": "Reine", "price": "15 \u20ac", "ing": "Base sauce tomate, mozzarella fior di latte, jambon, champignons frais, origan.", "all": "Gluten, lait."}, {"id": 3, "name": "Paysanne", "price": "14,50 \u20ac", "ing": "Base cr\u00e8me, mozzarella fior di latte, lardons fum\u00e9s, oignon, cr\u00e8me fra\u00eeche.", "all": "Gluten, lait."}, {"id": 4, "name": "Quatre Fromages", "price": "14,50 \u20ac", "ing": "Base sauce tomate, mozzarella fior di latte, fromage de ch\u00e8vre, gorgonzola, scamorza.", "all": "Gluten, lait."}, {"id": 5, "name": "V\u00e9g\u00e9tarienne", "price": "14,50 \u20ac", "ing": "Base sauce tomate, mozzarella fior di latte, poivrons mixtes, aubergine, oignon, artichaut, olives noires.", "all": "Gluten, lait."}, {"id": 6, "name": "Parma", "price": "18 \u20ac", "ing": "Base sauce tomate, mozzarella fior di latte, jambon de Parme AOP, mozzarella di bufala, copeaux de parmesan.", "all": "Gluten, lait."}, {"id": 7, "name": "Norv\u00e9gienne", "price": "17 \u20ac", "ing": "Base cr\u00e8me, mozzarella fior di latte, saumon fum\u00e9 (ajout\u00e9 apr\u00e8s cuisson), cr\u00e8me fra\u00eeche, citron.", "all": "Gluten, lait, poisson."}, {"id": 8, "name": "Mortadella", "price": "18 \u20ac", "ing": "Base cr\u00e8me, mozzarella fior di latte, cr\u00e8me de pesto, mortadelle \u00e0 la pistache, burrata au pesto, cr\u00e8me balsamique.", "all": "Gluten, lait, fruits \u00e0 coque (pistaches)."}, {"id": 9, "name": "Chorizo", "price": "15,50 \u20ac", "ing": "Base sauce tomate, mozzarella fior di latte, chorizo, mozzarella di bufala, olives noires.", "all": "Gluten, lait."}];
+
+  /* Build grid — src comes from hidden <img> tags already in HTML */
+  var grid = document.getElementById('grid');
+  if (!grid) return;
+
+  PIZZAS.forEach(function(p, i) {
+    var isMob = window.innerWidth <= 480;
+    var srcId  = isMob ? ('pimg' + i + '_mob') : ('pimg' + i);
+    var srcEl  = document.getElementById(srcId) || document.getElementById('pimg' + i);
+    var src    = srcEl ? srcEl.src : '';
+
+    var card  = document.createElement('div');
+    card.className = 'pizza-card';
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', p.name);
+    card.addEventListener('click',   function() { openModal(i); 
+  /* ── Nav picker ── */
+  window.openNav = function() {
+    document.getElementById('navOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeNav = function() {
+    document.getElementById('navOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  window.navOverlayClick = function(e) {
+    if (e.target === document.getElementById('navOverlay')) closeNav();
+  };
+});
+    card.addEventListener('keydown', function(e) { if (e.key==='Enter') openModal(i); });
+
+    var img = document.createElement('img');
+    img.className = 'pizza-card-img';
+    img.src = src;
+    img.alt = p.name;
+
+    var badge = document.createElement('span');
+    badge.className   = 'pizza-badge';
+    badge.textContent = 'N\u00b0' + p.id;
+
+    var body = document.createElement('div');
+    body.className = 'pizza-body';
+    body.innerHTML =
+      '<div class="pizza-header">'
+        + '<span class="pizza-name">' + p.name  + '</span>'
+        + '<span class="pizza-price">' + p.price + '</span>'
+      + '</div>'
+      + '<p class="pizza-ing">'  + p.ing + '</p>'
+      + '<p class="pizza-all">\u26a0\ufe0f ' + p.all + '</p>';
+
+    card.appendChild(img);
+    card.appendChild(badge);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+
+  /* Modal */
+  function openModal(i) {
+    var p     = PIZZAS[i];
+    var isMob = window.innerWidth <= 480;
+    var srcId  = isMob ? ('pimg' + i + '_mob') : ('pimg' + i);
+    var srcEl  = document.getElementById(srcId) || document.getElementById('pimg' + i);
+    var src    = srcEl ? srcEl.src : '';
+    var trans = PIZZA_TRANS[currentLang] && PIZZA_TRANS[currentLang][i];
+    var ing   = trans ? trans.ing : p.ing;
+    var all   = trans ? trans.all : p.all;
+    var t     = LANGS[currentLang];
+    var allerPrefix = t ? t.allergen_modal_prefix : '\u26a0\ufe0f All\u00e9rg\u00e8nes : ';
+    document.getElementById('mNum').textContent   = 'Pizza N\u00b0' + p.id;
+    document.getElementById('mName').textContent  = p.name;
+    document.getElementById('mPrice').textContent = p.price;
+    document.getElementById('mIng').textContent   = ing;
+    document.getElementById('mAll').textContent   = allerPrefix + all;
+    var mImg = document.getElementById('mImg');
+    mImg.src = src;
+    mImg.alt = p.name;
+    document.getElementById('overlay').classList.add('open');
+    document.getElementById('closeBtn').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  window.closeModal = function() {
+    document.getElementById('overlay').classList.remove('open');
+    document.getElementById('closeBtn').style.display = 'none';
+    document.body.style.overflow = '';
+  };
+  window.overlayClick = function(e) {
+    if (e.target === document.getElementById('overlay')) window.closeModal();
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') window.closeModal();
+  });
+
+  /* Swap images on resize between mobile/desktop */
+  var _lastMob = window.innerWidth <= 480;
+  window.addEventListener('resize', function() {
+    var nowMob = window.innerWidth <= 480;
+    if (nowMob !== _lastMob) {
+      _lastMob = nowMob;
+      document.querySelectorAll('.pizza-card-img').forEach(function(img, i) {
+        var srcId = nowMob ? ('pimg' + i + '_mob') : ('pimg' + i);
+        var el    = document.getElementById(srcId);
+        if (el) img.src = el.src;
+      });
+    }
+  });
+
+
+  /* ── Language init ── */
+
+const PIZZA_TRANS = {"fr": [{"ing": "Base sauce tomate, mozzarella fior di latte, parmesan, basilic.", "all": "Gluten, lait."}, {"ing": "Base sauce tomate, mozzarella fior di latte, jambon, champignons frais, origan.", "all": "Gluten, lait."}, {"ing": "Base crème, mozzarella fior di latte, lardons fumés, oignon, crème fraîche.", "all": "Gluten, lait."}, {"ing": "Base sauce tomate, mozzarella fior di latte, fromage de chèvre, gorgonzola, scamorza.", "all": "Gluten, lait."}, {"ing": "Base sauce tomate, mozzarella fior di latte, poivrons mixtes, aubergine, oignon, artichaut, olives noires.", "all": "Gluten, lait."}, {"ing": "Base sauce tomate, mozzarella fior di latte, jambon de Parme AOP, mozzarella di bufala, copeaux de parmesan.", "all": "Gluten, lait."}, {"ing": "Base crème, mozzarella fior di latte, saumon fumé (ajouté après cuisson), crème fraîche, citron.", "all": "Gluten, lait, poisson."}, {"ing": "Base crème, mozzarella fior di latte, crème de pesto, mortadelle à la pistache, burrata au pesto, crème balsamique.", "all": "Gluten, lait, fruits à coque (pistaches)."}, {"ing": "Base sauce tomate, mozzarella fior di latte, chorizo, mozzarella di bufala, olives noires.", "all": "Gluten, lait."}], "it": [{"ing": "Base salsa di pomodoro, mozzarella fior di latte, parmigiano, basilico.", "all": "Glutine, latte."}, {"ing": "Base salsa di pomodoro, mozzarella fior di latte, prosciutto cotto, funghi freschi, origano.", "all": "Glutine, latte."}, {"ing": "Base panna, mozzarella fior di latte, pancetta affumicata, cipolla, panna acida.", "all": "Glutine, latte."}, {"ing": "Base salsa di pomodoro, mozzarella fior di latte, formaggio di capra, gorgonzola, scamorza.", "all": "Glutine, latte."}, {"ing": "Base salsa di pomodoro, mozzarella fior di latte, peperoni misti, melanzane, cipolla, carciofi, olive nere.", "all": "Glutine, latte."}, {"ing": "Base salsa di pomodoro, mozzarella fior di latte, prosciutto di Parma DOP, mozzarella di bufala, scaglie di parmigiano.", "all": "Glutine, latte."}, {"ing": "Base panna, mozzarella fior di latte, salmone affumicato (aggiunto dopo cottura), panna acida, limone.", "all": "Glutine, latte, pesce."}, {"ing": "Base panna, mozzarella fior di latte, crema di pesto, mortadella al pistacchio, burrata al pesto, crema balsamica.", "all": "Glutine, latte, frutta a guscio (pistacchi)."}, {"ing": "Base salsa di pomodoro, mozzarella fior di latte, chorizo, mozzarella di bufala, olive nere.", "all": "Glutine, latte."}], "pt": [{"ing": "Base molho de tomate, mozzarella fior di latte, parmesão, manjericão.", "all": "Glúten, leite."}, {"ing": "Base molho de tomate, mozzarella fior di latte, fiambre, cogumelos frescos, orégãos.", "all": "Glúten, leite."}, {"ing": "Base nata, mozzarella fior di latte, bacon defumado, cebola, creme fraîche.", "all": "Glúten, leite."}, {"ing": "Base molho de tomate, mozzarella fior di latte, queijo de cabra, gorgonzola, scamorza.", "all": "Glúten, leite."}, {"ing": "Base molho de tomate, mozzarella fior di latte, pimentos mistos, beringela, cebola, alcachofra, azeitonas pretas.", "all": "Glúten, leite."}, {"ing": "Base molho de tomate, mozzarella fior di latte, presunto de Parma DOP, mozzarella di bufala, lascas de parmesão.", "all": "Glúten, leite."}, {"ing": "Base nata, mozzarella fior di latte, salmão fumado (adicionado após cozedura), creme fraîche, limão.", "all": "Glúten, leite, peixe."}, {"ing": "Base nata, mozzarella fior di latte, creme de pesto, mortadela com pistáchio, burrata com pesto, creme balsamico.", "all": "Glúten, leite, frutos de casca rija (pistáchios)."}, {"ing": "Base molho de tomate, mozzarella fior di latte, chouriço, mozzarella di bufala, azeitonas pretas.", "all": "Glúten, leite."}], "tr": [{"ing": "Domates sosu tabanı, fior di latte mozzarella, parmesan, fesleğen.", "all": "Glüten, süt."}, {"ing": "Domates sosu tabanı, fior di latte mozzarella, jambon, taze mantar, kekik.", "all": "Glüten, süt."}, {"ing": "Krema tabanı, fior di latte mozzarella, füme pastırma, soğan, crème fraîche.", "all": "Glüten, süt."}, {"ing": "Domates sosu tabanı, fior di latte mozzarella, keçi peyniri, gorgonzola, scamorza.", "all": "Glüten, süt."}, {"ing": "Domates sosu tabanı, fior di latte mozzarella, karışık biber, patlıcan, soğan, enginar, siyah zeytin.", "all": "Glüten, süt."}, {"ing": "Domates sosu tabanı, fior di latte mozzarella, Parma jambonu PDO, bufala mozzarella, parmesan cipsleri.", "all": "Glüten, süt."}, {"ing": "Krema tabanı, fior di latte mozzarella, füme somon (pişirdikten sonra eklenir), crème fraîche, limon.", "all": "Glüten, süt, balık."}, {"ing": "Krema tabanı, fior di latte mozzarella, pesto kreması, fıstıklı mortadella, pestolu burrata, balsamik krema.", "all": "Glüten, süt, kabuklu yemiş (fıstık)."}, {"ing": "Domates sosu tabanı, fior di latte mozzarella, sucuk, bufala mozzarella, siyah zeytin.", "all": "Glüten, süt."}], "sr": [{"ing": "Baza paradajz sos, mocarela fior di latte, parmezan, bosiljak.", "all": "Gluten, mleko."}, {"ing": "Baza paradajz sos, mocarela fior di latte, šunka, sveže pečurke, origano.", "all": "Gluten, mleko."}, {"ing": "Baza pavlaka, mocarela fior di latte, dimljena slanina, crni luk, kisela pavlaka.", "all": "Gluten, mleko."}, {"ing": "Baza paradajz sos, mocarela fior di latte, koziji sir, gorgonzola, skamorza.", "all": "Gluten, mleko."}, {"ing": "Baza paradajz sos, mocarela fior di latte, mešana paprika, patlidžan, crni luk, artičoka, crne masline.", "all": "Gluten, mleko."}, {"ing": "Baza paradajz sos, mocarela fior di latte, Parma šunka ZOP, mocarela di bufala, parmezan listići.", "all": "Gluten, mleko."}, {"ing": "Baza pavlaka, mocarela fior di latte, dimljeni losos (dodaje se nakon pečenja), kisela pavlaka, limun.", "all": "Gluten, mleko, riba."}, {"ing": "Baza pavlaka, mocarela fior di latte, pesto krem, mortadela sa pistacijama, burata sa pestom, balzamična krema.", "all": "Gluten, mleko, orašasti plodovi (pistacije)."}, {"ing": "Baza paradajz sos, mocarela fior di latte, čorizo, mocarela di bufala, crne masline.", "all": "Gluten, mleko."}], "sq": [{"ing": "Bazë salcë domatesh, mocarelë fior di latte, parmixhano, borzilok.", "all": "Gluten, qumësht."}, {"ing": "Bazë salcë domatesh, mocarelë fior di latte, proshutë, kërpudha të freskëta, rigon.", "all": "Gluten, qumësht."}, {"ing": "Bazë krem, mocarelë fior di latte, proshutë e tymosur, qepë, krem i freskët.", "all": "Gluten, qumësht."}, {"ing": "Bazë salcë domatesh, mocarelë fior di latte, djathë dhie, gorgonzola, skamorza.", "all": "Gluten, qumësht."}, {"ing": "Bazë salcë domatesh, mocarelë fior di latte, speca të ndryshëm, patëllxhan, qepë, angjinare, ullinj të zinj.", "all": "Gluten, qumësht."}, {"ing": "Bazë salcë domatesh, mocarelë fior di latte, proshutë Parma DOP, mocarelë di bufala, thekel parmixhano.", "all": "Gluten, qumësht."}, {"ing": "Bazë krem, mocarelë fior di latte, salmon i tymosur (shtohet pas gatimit), krem i freskët, limon.", "all": "Gluten, qumësht, peshk."}, {"ing": "Bazë krem, mocarelë fior di latte, krem pesto, mortadelë me pistaqe, burratë me pesto.", "all": "Gluten, qumësht, arrorë (pistaqe)."}, {"ing": "Bazë salcë domatesh, mocarelë fior di latte, chorizo, mocarelë di bufala, ullinj të zinj.", "all": "Gluten, qumësht."}]};
+
+const LANGS = {"fr": {"flag": "fr", "label": "Français", "eyebrow": "Pizza au feu de bois · Artisanale", "subtitle": "À emporter · Villers-le-Lac · Fait avec passion", "cta": "Commander — 07 59 68 88 19", "ib_hours": "Commandes préférables de 18h à 20h · Retrait jusqu’à 22h · Tous les jours", "sec_title": "Nos <em>Pizzas</em>", "sec_sub": "9 PIZZAS AU FEU DE BOIS", "allergen_title": "Informations allergènes", "allergen_text": "<strong>Gluten</strong> : pâte à pizza (toutes les pizzas) &nbsp;·&nbsp; <strong>Lait</strong> : mozzarella, parmesan, burrata, crème, gorgonzola, chèvre, scamorza &nbsp;·&nbsp; <strong>Poisson</strong> : saumon fumé (Norvégienne) &nbsp;·&nbsp; <strong>Fruits à coque</strong> : pistaches (Mortadella, Pesto)", "banner_title": "Passez commande auprès de <em>Milan</em>", "banner_sub": "Chaque soir, commandes de 18h à 19h — retrait sur place jusqu'à 22h", "order_phone": "07 59 68 88 19", "modal_label": "Ingrédients", "modal_btn": "Commander — 07 59 68 88 19", "nav_title": "Ouvrir avec", "nav_addr": "<strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac", "nav_cancel": "Annuler", "footer_activity": "Activité : fabrication et vente de pizzas à emporter", "footer_hours": "Ouvert tous les jours · Commandes 18h–19h", "footer_rights": "© 2026 Pizza Milan – Tous droits réservés", "allergen_modal_prefix": "⚠️ Allergènes : "}, "it": {"flag": "it", "label": "Italiano", "eyebrow": "Pizza al forno a legna · Artigianale", "subtitle": "Da asporto · Villers-le-Lac · Fatto con passione", "cta": "Ordina — 07 59 68 88 19", "ib_hours": "Ordini 18:00–19:00 · Ritiro fino alle 22:00 · Tutti i giorni", "sec_title": "Le nostre <em>Pizze</em>", "sec_sub": "9 PIZZE AL FORNO A LEGNA", "allergen_title": "Informazioni allergeni", "allergen_text": "<strong>Glutine</strong> : impasto per pizza (tutte le pizze) &nbsp;·&nbsp; <strong>Latte</strong> : mozzarella, parmigiano, burrata, panna, gorgonzola, caprino, scamorza &nbsp;·&nbsp; <strong>Pesce</strong> : salmone affumicato (Norvegese) &nbsp;·&nbsp; <strong>Frutta a guscio</strong> : pistacchi (Mortadella, Pesto)", "banner_title": "Ordina da <em>Milan</em>", "banner_sub": "Ogni sera, ordini dalle 18:00 alle 19:00 — ritiro in loco fino alle 22:00", "order_phone": "07 59 68 88 19", "modal_label": "Ingredienti", "modal_btn": "Ordina — 07 59 68 88 19", "nav_title": "Apri con", "nav_addr": "<strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac", "nav_cancel": "Annulla", "footer_activity": "Attività: produzione e vendita di pizze da asporto", "footer_hours": "Aperto tutti i giorni · Ordini 18:00–19:00", "footer_rights": "© 2026 Pizza Milan – Tutti i diritti riservati", "allergen_modal_prefix": "⚠️ Allergeni : "}, "pt": {"flag": "pt", "label": "Português", "eyebrow": "Pizza no forno a lenha · Artesanal", "subtitle": "Para levar · Villers-le-Lac · Feito com paixão", "cta": "Encomendar — 07 59 68 88 19", "ib_hours": "Encomendas 18h–19h · Levantamento até às 22h · Todos os dias", "sec_title": "As nossas <em>Pizzas</em>", "sec_sub": "9 PIZZAS NO FORNO A LENHA", "allergen_title": "Informações sobre alergénios", "allergen_text": "<strong>Glúten</strong> : massa de pizza (todas as pizzas) &nbsp;·&nbsp; <strong>Leite</strong> : mozzarella, parmesão, burrata, nata, gorgonzola, queijo de cabra, scamorza &nbsp;·&nbsp; <strong>Peixe</strong> : salmão fumado (Norueguesa) &nbsp;·&nbsp; <strong>Frutos de casca rija</strong> : pistácios (Mortadella, Pesto)", "banner_title": "Faça o seu pedido ao <em>Milan</em>", "banner_sub": "Todas as noites, encomendas das 18h às 19h — levantamento no local até às 22h", "order_phone": "07 59 68 88 19", "modal_label": "Ingredientes", "modal_btn": "Encomendar — 07 59 68 88 19", "nav_title": "Abrir com", "nav_addr": "<strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac", "nav_cancel": "Cancelar", "footer_activity": "Atividade: fabrico e venda de pizzas para levar", "footer_hours": "Aberto todos os dias · Encomendas 18h–19h", "footer_rights": "© 2026 Pizza Milan – Todos os direitos reservados", "allergen_modal_prefix": "⚠️ Alergénios : "}, "tr": {"flag": "tr", "label": "Türkçe", "eyebrow": "Odun ateşinde pizza · El yapımı", "subtitle": "Paket servis · Villers-le-Lac · Sevgiyle yapılmış", "cta": "Sipariş ver — 07 59 68 88 19", "ib_hours": "Siparişler 18:00–19:00 · Teslim 22:00'ye kadar · Her gün", "sec_title": "<em>Menü</em>", "sec_sub": "ODUN ATEŞİNDE 9 PİZZA", "allergen_title": "Alerjen bilgileri", "allergen_text": "<strong>Glüten</strong> : pizza hamuru (tüm pizzalarda) &nbsp;·&nbsp; <strong>Süt</strong> : mozzarella, parmesan, burrata, krema, gorgonzola, keçi peyniri, scamorza &nbsp;·&nbsp; <strong>Balık</strong> : füme somon (Norveç) &nbsp;·&nbsp; <strong>Kabuklu yemiş</strong> : fıstık (Mortadella, Pesto)", "banner_title": "<em>Milan</em>'a sipariş verin", "banner_sub": "Her akşam 18:00–19:00 arası siparişler alınır — yerel teslim 22:00'ye kadar", "order_phone": "07 59 68 88 19", "modal_label": "Malzemeler", "modal_btn": "Sipariş ver — 07 59 68 88 19", "nav_title": "Şununla aç", "nav_addr": "<strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac", "nav_cancel": "İptal", "footer_activity": "Faaliyet: paket servis pizza üretimi ve satışı", "footer_hours": "Her gün açık · Siparişler 18:00–19:00", "footer_rights": "© 2026 Pizza Milan – Tüm hakları saklıdır", "allergen_modal_prefix": "⚠️ Alerjenler : "}, "sr": {"flag": "sr", "label": "Srpski", "eyebrow": "Pica iz peći na drva · Zanatska", "subtitle": "Za poneti · Villers-le-Lac · Rađeno sa strašću", "cta": "Naruči — 07 59 68 88 19", "ib_hours": "Narudžbine 18h–19h · Preuzimanje do 22h · Svaki dan", "sec_title": "<em>Meni</em>", "sec_sub": "9 PICA IZ PEĆI NA DRVA", "allergen_title": "Informacije o alergenima", "allergen_text": "<strong>Gluten</strong> : testo za picu (sve pice) &nbsp;·&nbsp; <strong>Mleko</strong> : mocarela, parmezan, burata, pavlaka, gorgonzola, koziji sir, skamorza &nbsp;·&nbsp; <strong>Riba</strong> : dimljeni losos (Norveška) &nbsp;·&nbsp; <strong>Orašasti plodovi</strong> : pistacije (Mortadela, Pesto)", "banner_title": "Naručite kod <em>Milana</em>", "banner_sub": "Svako veče, narudžbine od 18h do 19h — preuzimanje na licu mesta do 22h", "order_phone": "07 59 68 88 19", "modal_label": "Sastojci", "modal_btn": "Naruči — 07 59 68 88 19", "nav_title": "Otvori sa", "nav_addr": "<strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac", "nav_cancel": "Otkaži", "footer_activity": "Delatnost: proizvodnja i prodaja pice za poneti", "footer_hours": "Otvoreno svaki dan · Narudžbine 18h–19h", "footer_rights": "© 2026 Pizza Milan – Sva prava zadržana", "allergen_modal_prefix": "⚠️ Alergeni : "}, "sq": {"flag": "sq", "label": "Shqip", "eyebrow": "Pica në furrë me dru · Artizanale", "subtitle": "Me vete · Villers-le-Lac · Bërë me pasion", "cta": "Porosit — 07 59 68 88 19", "ib_hours": "Porositë 18:00–19:00 · Tërheqje deri në 22:00 · Çdo ditë", "sec_title": "<em>Menuja</em>", "sec_sub": "9 PICA NË FURRË ME DRU", "allergen_title": "Informacione për alergjenet", "allergen_text": "<strong>Gluten</strong> : brumë pice (të gjitha picat) &nbsp;·&nbsp; <strong>Qumësht</strong> : mocarela, parmixhano, burrata, krem, gorgonzola, djathë dhie, skamorza &nbsp;·&nbsp; <strong>Peshk</strong> : salmon i tymosur (Norvegjeze) &nbsp;·&nbsp; <strong>Arrorë</strong> : pistaqe (Mortadela, Pesto)", "banner_title": "Porosit te <em>Milani</em>", "banner_sub": "Çdo mbrëmje, porositë nga 18:00 deri 19:00 — tërheqje në vend deri në 22:00", "order_phone": "07 59 68 88 19", "modal_label": "Përbërësit", "modal_btn": "Porosit — 07 59 68 88 19", "nav_title": "Hap me", "nav_addr": "<strong>Pizza Milan</strong><br>8 Rue de Bellevue, 25130 Villers-le-Lac", "nav_cancel": "Anulo", "footer_activity": "Aktiviteti: prodhim dhe shitje picash për tu marrë", "footer_hours": "Hapur çdo ditë · Porositë 18:00–19:00", "footer_rights": "© 2026 Pizza Milan – Të gjitha të drejtat e rezervuara", "allergen_modal_prefix": "⚠️ Alergjenet : "}}
+let currentLang = 'fr';
+
+const ABOUT_TRANS = {"fr": {"eyebrow": "Pizzaiolo certifié · Villers-le-Lac", "title": "À propos de <em>Pizza Milan</em>", "btn": "À propos de <strong>PIZZA MILAN</strong>", "nav_btn_cancel": "Annuler", "diplomas_title": "Diplômes & Certifications", "diplome1_label": "Formation CQP Pizzaiolo", "diplome1_sub": "École Italienne de Pizzaiolo Paris · Déc. 2025", "diplome2_label": "CQP Pizzaiolo – Niveau 3", "diplome2_sub": "CPNE HCR · Certifié Janvier 2026", "close_btn": "Fermer", "paragraphs": ["Depuis toujours, la gastronomie et l'amour des bonnes choses occupent une place importante dans ma vie. Passionné par l'univers de la pizza, j'ai naturellement voulu réunir ces deux valeurs : la convivialité et la recherche de la qualité.", "Pendant de nombreuses années, j'ai préparé des pizzas pour ma famille, mes amis et mes proches. Pour moi, la pizza est bien plus qu'un simple repas : c'est un moment de partage, de chaleur et de bonne humeur, capable de rassembler les gens autour d'une même table.", "Encouragé par ceux qui appréciaient mes créations, j'ai décidé de transformer cette passion en véritable métier. Mais il était essentiel pour moi de proposer bien plus qu'une simple pizza : je voulais offrir un produit artisanal, préparé avec exigence, à partir d'ingrédients frais et soigneusement sélectionnés.", "C'est dans cette démarche que j'ai choisi de me former auprès de l'<strong>École Italienne de Pizzaiolo de France</strong>, où j'ai obtenu mon diplôme avec succès, ainsi que mon <strong>Certificat de Qualification Professionnelle</strong>.", "Aujourd'hui, fort de cette expérience, de cette formation et surtout d'une passion intacte, je mets tout mon cœur dans chacune de mes pizzas afin de vous faire découvrir un véritable goût d'Italie : authentique, généreux et gourmand.", "<strong>Bienvenue chez Pizza Milan.</strong>"], "quote": "« Chaque pizza est préparée comme si elle était destinée à ma propre famille. »"}, "it": {"eyebrow": "Pizzaiolo certificato · Villers-le-Lac", "title": "Chi siamo — <em>Pizza Milan</em>", "btn": "Chi siamo — <strong>PIZZA MILAN</strong>", "nav_btn_cancel": "Annulla", "diplomas_title": "Diplomi & Certificazioni", "diplome1_label": "Formazione CQP Pizzaiolo", "diplome1_sub": "Scuola Italiana Pizzaioli Parigi · Dic. 2025", "diplome2_label": "CQP Pizzaiolo – Livello 3", "diplome2_sub": "CPNE HCR · Certificato Gennaio 2026", "close_btn": "Chiudi", "paragraphs": ["Da sempre, la gastronomia e l'amore per le cose buone occupano un posto importante nella mia vita. Appassionato del mondo della pizza, ho naturalmente voluto unire questi due valori: la convivialità e la ricerca della qualità.", "Per molti anni ho preparato pizze per la mia famiglia, i miei amici e i miei cari. Per me la pizza è molto più di un semplice pasto: è un momento di condivisione, calore e buon umore, capace di riunire le persone attorno alla stessa tavola.", "Incoraggiato da chi apprezzava le mie creazioni, ho deciso di trasformare questa passione in un vero mestiere. Ma era essenziale per me offrire qualcosa di più di una semplice pizza: volevo proporre un prodotto artigianale, preparato con cura, con ingredienti freschi e selezionati.", "È in quest'ottica che ho scelto di formarmi presso la <strong>Scuola Italiana di Pizzaioli di Francia</strong>, dove ho ottenuto il mio diploma con successo, oltre al mio <strong>Certificato di Qualificazione Professionale</strong>.", "Oggi, forte di questa esperienza, di questa formazione e soprattutto di una passione intatta, metto tutto il cuore in ogni mia pizza per farvi scoprire un vero sapore d'Italia: autentico, generoso e goloso.", "<strong>Benvenuti da Pizza Milan.</strong>"], "quote": "« Ogni pizza è preparata come se fosse destinata alla mia stessa famiglia. »"}, "pt": {"eyebrow": "Pizzaiolo certificado · Villers-le-Lac", "title": "Sobre nós — <em>Pizza Milan</em>", "btn": "Sobre nós — <strong>PIZZA MILAN</strong>", "nav_btn_cancel": "Cancelar", "diplomas_title": "Diplomas & Certificações", "diplome1_label": "Formação CQP Pizzaiolo", "diplome1_sub": "Escola Italiana de Pizzaiolo Paris · Dez. 2025", "diplome2_label": "CQP Pizzaiolo – Nível 3", "diplome2_sub": "CPNE HCR · Certificado Janeiro 2026", "close_btn": "Fechar", "paragraphs": ["Desde sempre, a gastronomia e o amor pelas boas coisas ocupam um lugar importante na minha vida. Apaixonado pelo universo da pizza, quis naturalmente reunir estes dois valores: a convivialidade e a procura da qualidade.", "Durante muitos anos, preparei pizzas para a minha família, os meus amigos e os meus próximos. Para mim, a pizza é muito mais do que uma simples refeição: é um momento de partilha, calor humano e boa disposição, capaz de reunir as pessoas à mesma mesa.", "Encorajado por quem apreciava as minhas criações, decidi transformar esta paixão num verdadeiro ofício. Mas era essencial para mim oferecer muito mais do que uma simples pizza: queria oferecer um produto artesanal, preparado com exigência, a partir de ingredientes frescos e criteriosamente selecionados.", "Foi nessa perspetiva que escolhi formar-me na <strong>Escola Italiana de Pizzaiolo de França</strong>, onde obtive o meu diploma com sucesso, bem como o meu <strong>Certificado de Qualificação Profissional</strong>.", "Hoje, com esta experiência, esta formação e sobretudo uma paixão intacta, coloco todo o meu coração em cada pizza para vos fazer descobrir um verdadeiro sabor de Itália: autêntico, generoso e saboroso.", "<strong>Bem-vindos à Pizza Milan.</strong>"], "quote": "« Cada pizza é preparada como se fosse destinada à minha própria família. »"}, "tr": {"eyebrow": "Sertifikalı Pizzaiolo · Villers-le-Lac", "title": "Hakkımızda — <em>Pizza Milan</em>", "btn": "Hakkımızda — <strong>PIZZA MILAN</strong>", "nav_btn_cancel": "İptal", "diplomas_title": "Diplomalar & Sertifikalar", "diplome1_label": "CQP Pizzaiolo Eğitimi", "diplome1_sub": "İtalyan Pizzaiolo Okulu Paris · Ara. 2025", "diplome2_label": "CQP Pizzaiolo – Seviye 3", "diplome2_sub": "CPNE HCR · Sertifikalı Ocak 2026", "close_btn": "Kapat", "paragraphs": ["Her zaman gastronomi ve güzel şeylere olan sevgi hayatımda önemli bir yer tutmuştur. Pizza dünyasına olan tutkumla bu iki değeri bir araya getirmek istedim: dostluk ve kalite arayışı.", "Yıllarca ailem, arkadaşlarım ve sevdiklerim için pizza yaptım. Benim için pizza basit bir yemekten çok daha fazlasıdır: insanları aynı masada bir araya getirebilen bir paylaşım, sıcaklık ve neşe anıdır.", "Yaratımlarımı takdir edenlerin cesaretlendirmesiyle bu tutkuyu gerçek bir mesleğe dönüştürmeye karar verdim. Ancak benim için basit bir pizzanın ötesinde bir şey sunmak çok önemliydi: özenle seçilmiş taze malzemelerden hazırlanan el yapımı bir ürün sunmak istedim.", "Bu doğrultuda <strong>Fransa İtalyan Pizzaiolo Okulu</strong>'nda eğitim almayı seçtim ve diplomamı başarıyla aldım, ayrıca <strong>Mesleki Yeterlilik Sertifikam</strong>'ı da edindim.", "Bugün bu deneyim, bu eğitim ve her şeyden önce canlı tutkumla, size gerçek bir İtalya lezzeti sunmak için her pizzama tüm kalbimi koyuyorum: özgün, cömert ve lezzetli.", "<strong>Pizza Milan'a hoş geldiniz.</strong>"], "quote": "« Her pizza, kendi ailem için hazırlanmış gibi özenle yapılır. »"}, "sr": {"eyebrow": "Sertifikovani pica majstor · Villers-le-Lac", "title": "O nama — <em>Pizza Milan</em>", "btn": "O nama — <strong>PIZZA MILAN</strong>", "nav_btn_cancel": "Otkaži", "diplomas_title": "Diplome i sertifikati", "diplome1_label": "Obuka CQP Pizzaiolo", "diplome1_sub": "Italijanska škola Pizzaiolo Pariz · Dec. 2025", "diplome2_label": "CQP Pizzaiolo – Nivo 3", "diplome2_sub": "CPNE HCR · Sertifikovano Januar 2026", "close_btn": "Zatvori", "paragraphs": ["Oduvek su gastronomija i ljubav prema dobrim stvarima zauzimale važno mesto u mom životu. Strastven prema svetu pice, prirodno sam poželeo da spojim ove dve vrednosti: druženj e i potragu za kvalitetom.", "Godinama sam pravio pice za svoju porodicu, prijatelje i bližnje. Za mene, pica je mnogo više od obroka: to je trenutak deljenja, topline i dobre volje, koji može da okupi ljude oko istog stola.", "Ohrabren onima koji su cenili moja ostvarenja, odlučio sam da tu strast pretvori m u pravi zanat. Ali bilo mi je bitno ponuditi mnogo više od obične pice: hteo sam da ponudim zanatski proizvod, pripremljen sa pažnjom, od svežih i pažljivo odabranih sastojaka.", "U tom duhu sam odlučio da se školujem u <strong>Italijanskoj školi Pizzaiolo Francuske</strong>, gde sam uspešno stekao diplomu, kao i moj <strong>Sertifikat o profesionalnoj kvalifikaciji</strong>.", "Danas, uz ovo iskustvo, ovu obuku i pre svega netaknutu strast, ulažem sve srce u svaku picu kako bih vam otkrio pravi ukus Italije: autentičan, darežljiv i ukusan.", "<strong>Dobrodošli u Pizza Milan.</strong>"], "quote": "« Svaka pica se pravi kao da je namenjena mojoj sopstvenoj porodici. »"}, "sq": {"eyebrow": "Pizzaiolo i certifikuar · Villers-le-Lac", "title": "Rreth nesh — <em>Pizza Milan</em>", "btn": "Rreth nesh — <strong>PIZZA MILAN</strong>", "nav_btn_cancel": "Anulo", "diplomas_title": "Diploma & Certifikime", "diplome1_label": "Trajnim CQP Pizzaiolo", "diplome1_sub": "Shkolla Italiane e Pizzaiolo Paris · Dhj. 2025", "diplome2_label": "CQP Pizzaiolo – Niveli 3", "diplome2_sub": "CPNE HCR · Certifikuar Janar 2026", "close_btn": "Mbyll", "paragraphs": ["Që nga gjithmonë, gastronomia dhe dashuria për gjërat e mira kanë zënë vend të rëndësishëm në jetën time. I pasionuar pas botës së picës, dëshirova natyrshëm të bashkoj këto dy vlera: mikpritjen dhe kërkimin e cilësisë.", "Për shumë vite kam përgatitur pica për familjen time, miqtë dhe të dashurit. Për mua, pica është shumë më tepër se një vakt i thjeshtë: është një çast ndarjeje, ngrohtësie dhe gëzimi, i aftë të bashkojë njerëzit rreth të njëjtit tryezë.", "I inkurajuar nga ata që vlerësonin krijimet e mia, vendosa ta kthej këtë pasion në profesion të vërtetë. Por ishte thelbësore për mua të ofroj shumë më tepër se një picë të thjeshtë: doja të ofroja një produkt artizanal, të përgatitur me kujdes, nga përbërës të freskët dhe të zgjedhur me kujdes.", "Në këtë drejtim zgjodha të trajnohem pranë <strong>Shkollës Italiane të Pizzaiolo të Francës</strong>, ku mora diplomën me sukses, si dhe <strong>Certifikatën e Kualifikimit Profesional</strong>.", "Sot, me këtë eksperiencë, këtë trajnim dhe mbi të gjitha me pasion të pandryshuar, vë gjithë zemrën time në secilën picë për t'ju bërë të zbuloni një shije të vërtetë italiane: autentike, bujare dhe të shijshme.", "<strong>Mirë se vini në Pizza Milan.</strong>"], "quote": "« Çdo picë përgatitet sikur të ishte destinuar për familjen time vetë. »"}};
+
+var FLAG_SVGS = {
+  'fr': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0">  <rect width="10" height="20" fill="#002395"/>  <rect x="10" width="10" height="20" fill="#fff"/>  <rect x="20" width="10" height="20" fill="#ED2939"/></svg>',
+  'it': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0">  <rect width="10" height="20" fill="#009246"/>  <rect x="10" width="10" height="20" fill="#fff"/>  <rect x="20" width="10" height="20" fill="#CE2B37"/></svg>',
+  'pt': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0">  <rect width="30" height="20" fill="#006600"/>  <rect width="12" height="20" fill="#FF0000"/>  <ellipse cx="12" cy="10" rx="4" ry="4" fill="#FFD700" stroke="#003399" stroke-width="0.8"/></svg>',
+  'tr': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0">  <rect width="30" height="20" fill="#E30A17"/>  <circle cx="13" cy="10" r="5" fill="#fff"/>  <circle cx="15" cy="10" r="4" fill="#E30A17"/>  <polygon points="19,10 22,8.5 21,10 22,11.5" fill="#fff"/></svg>',
+  'sr': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0">  <rect width="30" height="7" fill="#C6363C"/>  <rect y="7" width="30" height="6" fill="#0C4076"/>  <rect y="13" width="30" height="7" fill="#fff"/></svg>',
+  'sq': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="30" height="20" style="border-radius:3px;display:inline-block;vertical-align:middle;flex-shrink:0">  <rect width="30" height="20" fill="#E41E20"/>  <g fill="#000" transform="translate(8,2) scale(0.47)">    <path d="M7,0 C5,0 3,2 3,4 C3,6 5,7 5,7 C5,7 4,8 4,10 C4,12 6,14 7,14 C8,14 10,12 10,10 C10,8 9,7 9,7 C9,7 11,6 11,4 C11,2 9,0 7,0Z M0,5 C0,3 1,2 3,3 L3,6 C1,7 0,7 0,5Z M14,5 C14,3 13,2 11,3 L11,6 C13,7 14,7 14,5Z"/>  </g></svg>'
+};
+
+function setLang(code) {
+  currentLang = code;
+  const t = LANGS[code];
+  try { localStorage.setItem('pm-lang', code); } catch(e) {}
+
+  // Update lang picker button
+  var flagEl = document.getElementById('langBtnFlag');
+  if (flagEl && FLAG_SVGS[code]) flagEl.innerHTML = FLAG_SVGS[code];
+  var codeEl = document.querySelector('#langBtn .lang-code');
+  if (codeEl) codeEl.textContent = code.toUpperCase();
+
+  // Header
+  var el;
+  el = document.getElementById('txt-eyebrow'); if(el) el.textContent = t.eyebrow;
+  el = document.getElementById('txt-subtitle'); if(el) el.textContent = t.subtitle;
+  el = document.getElementById('txt-cta'); if(el) el.textContent = t.cta;
+
+  // Info bar
+  el = document.getElementById('txt-ib-hours'); if(el) el.textContent = t.ib_hours;
+
+  // Section title
+  el = document.getElementById('txt-sec-title'); if(el) el.innerHTML = t.sec_title;
+  el = document.getElementById('txt-sec-sub'); if(el) el.textContent = t.sec_sub;
+
+  // Allergen box
+  el = document.getElementById('txt-allergen-title'); if(el) el.textContent = t.allergen_title;
+  el = document.getElementById('txt-allergen-text'); if(el) el.innerHTML = t.allergen_text;
+
+  // Order banner
+  el = document.getElementById('txt-banner-title'); if(el) el.innerHTML = t.banner_title;
+  el = document.getElementById('txt-banner-sub'); if(el) el.textContent = t.banner_sub;
+
+  // Nav picker
+  el = document.getElementById('txt-nav-title'); if(el) el.textContent = t.nav_title;
+  el = document.getElementById('txt-nav-addr'); if(el) el.innerHTML = t.nav_addr;
+  el = document.getElementById('txt-nav-cancel'); if(el) el.textContent = t.nav_cancel;
+
+  // Modal
+  el = document.getElementById('txt-modal-label'); if(el) el.textContent = t.modal_label;
+  el = document.getElementById('txt-modal-btn'); if(el) el.textContent = t.modal_btn;
+
+  // Footer
+  el = document.getElementById('txt-footer-activity'); if(el) el.textContent = t.footer_activity;
+  el = document.getElementById('txt-footer-hours'); if(el) el.textContent = t.footer_hours;
+  el = document.getElementById('txt-footer-rights'); if(el) el.textContent = t.footer_rights;
+
+  // Translate 'À propos' modal
+  var ab = ABOUT_TRANS[code];
+  if (ab) {
+    var ael;
+    ael = document.getElementById('about-eyebrow');      if(ael) ael.textContent = ab.eyebrow;
+    ael = document.getElementById('about-title');        if(ael) ael.innerHTML  = ab.title;
+    ael = document.getElementById('txt-about-btn');      if(ael) ael.innerHTML  = ab.btn;
+    ael = document.getElementById('about-diplomas-title'); if(ael) ael.textContent = ab.diplomas_title;
+    ael = document.getElementById('diplome1-label');     if(ael) ael.textContent = ab.diplome1_label;
+    ael = document.getElementById('diplome1-sub');       if(ael) ael.textContent = ' · ' + ab.diplome1_sub;
+    ael = document.getElementById('diplome2-label');     if(ael) ael.textContent = ab.diplome2_label;
+    ael = document.getElementById('diplome2-sub');       if(ael) ael.textContent = ' · ' + ab.diplome2_sub;
+    ael = document.getElementById('about-close-btn');    if(ael) ael.textContent = ab.close_btn;
+    ael = document.getElementById('about-quote');        if(ael) ael.textContent = ab.quote;
+    ab.paragraphs.forEach(function(txt, i) {
+      var pel = document.getElementById('about-p' + i);
+      if (pel) pel.innerHTML = txt;
+    });
+  }
+
+  // Close lang picker
+  closeLangPicker();
+
+  // Update all pizza cards with translated ingredients
+  var trans = PIZZA_TRANS[code];
+  if (trans) {
+    document.querySelectorAll('.pizza-card').forEach(function(card, i) {
+      var ingEl = card.querySelector('.pizza-ing');
+      var allEl = card.querySelector('.pizza-all');
+      if (ingEl && trans[i]) ingEl.textContent = trans[i].ing;
+      if (allEl && trans[i]) allEl.textContent = '\u26a0\ufe0f ' + trans[i].all;
+    });
+  }
+}
+
+window.openLangPicker = function() {
+  document.getElementById('langOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+};
+window.closeLangPicker = function() {
+  document.getElementById('langOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+window.langOverlayClick = function(e) {
+  if (e.target === document.getElementById('langOverlay')) closeLangPicker();
+};
+window.setLang = setLang;
+
+  // Restore saved language
+  var savedLang = null;
+  try { savedLang = localStorage.getItem('pm-lang'); } catch(e) {}
+  if (savedLang && LANGS[savedLang] && savedLang !== 'fr') { setLang(savedLang); }
+  // Mark active option
+  function updateLangOptions(code) {
+    document.querySelectorAll('.lang-option').forEach(function(opt) {
+      opt.classList.toggle('active', opt.getAttribute('onclick') === "setLang('" + code + "')");
+    });
+  }
+  var origSetLang = window.setLang;
+  window.setLang = function(code) { origSetLang(code); updateLangOptions(code); };
+  updateLangOptions(currentLang);
+});
+</script>
+</body>
+</html>
